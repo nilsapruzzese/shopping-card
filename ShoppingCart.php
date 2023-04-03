@@ -1,6 +1,7 @@
 <?php
 
 require_once 'Item.php';
+require_once 'ShoppingCartMemento.php';
 
 class ShoppingCart
 {
@@ -37,5 +38,19 @@ class ShoppingCart
         }
 
         return $total;
+    }
+
+    public function saveToMemento(): ShoppingCartMemento
+    {
+        return new ShoppingCartMemento($this->items);
+    }
+
+    public function restoreFromMemento(ShoppingCartMemento $memento): void
+    {
+        if(!$memento) {
+            throw new Exception('Memento cannot be empty');
+        }
+
+        $this->items = $memento->getItems();
     }
 }
