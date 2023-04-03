@@ -16,7 +16,7 @@ class User
 
         $this->email = $email;
         $this->name = $name;
-        $this->shoppingCart = new ShoppingCart();
+        $this->shoppingCart = ShoppingCart::getInstance();
     }
 
     public function getEmail(): string

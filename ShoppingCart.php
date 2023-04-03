@@ -5,7 +5,19 @@ require_once 'ShoppingCartMemento.php';
 
 class ShoppingCart
 {
+    private static ?ShoppingCart $instance = null;
     private array $items = [];
+
+    public function __construct() { }
+
+    public static function getInstance(): ShoppingCart
+    {
+        if (self::$instance === null) {
+            self::$instance = new ShoppingCart();
+        }
+
+        return self::$instance;
+    }
 
     public function addItem(Item $item): void
     {
